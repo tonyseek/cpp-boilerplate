@@ -4,4 +4,5 @@ target_include_directories(
   ${Boost_INCLUDE_DIRS})
 target_link_libraries(
   demo PRIVATE
-  ${Boost_LIBRARIES})
+  ${Boost_LIBRARIES}
+  coverage_config)
