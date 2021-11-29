@@ -1,2 +1,5 @@
 /build
 /.cache
+
+cppcheck-addon-ctu-file-list
+*.ctu-info
