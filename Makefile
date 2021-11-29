@@ -8,7 +8,10 @@ build: build-prepare
 	cmake --build "$(BUILD_DIR)"
 
 build-prepare:
-	cmake -S . -B "$(BUILD_DIR)" -D "CMAKE_BUILD_TYPE=$(BUILD_TYPE)"
+	cmake -S . -B "$(BUILD_DIR)" \
+		-D "CMAKE_BUILD_TYPE=$(BUILD_TYPE)" \
+		-D "CMAKE_C_COMPILER=$(CC)" \
+		-D "CMAKE_CXX_COMPILER=$(CXX)"
 
 test: build
 	ctest --test-dir "$(BUILD_DIR)" --output-on-failure
