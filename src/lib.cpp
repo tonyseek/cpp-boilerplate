@@ -1,8 +1,10 @@
 #include <string>
+#include <boost/format.hpp>
 #include "demo/lib.h"
 
 namespace demo {
     std::string greet(const std::string &&name) {
-        return std::move(std::string("hello, ") + name);
+        auto fmt = boost::format("hello, %s") % name;
+        return std::move(fmt).str();
     }
 }

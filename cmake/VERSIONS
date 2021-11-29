@@ -1,1 +1,2 @@
 conan.cmake https://raw.githubusercontent.com/conan-io/cmake-conan/v0.16.1/conan.cmake
+doctest.cmake https://raw.githubusercontent.com/onqtam/doctest/2.4.6/scripts/cmake/doctest.cmake
