@@ -2,7 +2,7 @@ BUILD_DIR = build
 BUILD_TYPE = RelWithDebInfo
 COVERAGE_INFO = $(BUILD_DIR)/coverage.info
 
-.PHONY: build build-prepare test test-coverage clean
+.PHONY: build build-prepare test lint clean
 
 build: build-prepare
 	cmake --build "$(BUILD_DIR)"
@@ -15,11 +15,12 @@ build-prepare:
 
 test: build
 	ctest --test-dir "$(BUILD_DIR)" --output-on-failure
-
-test-coverage: test
 	lcov --directory "$(BUILD_DIR)" --capture --output-file "$(COVERAGE_INFO)"
 	lcov --extract "$(COVERAGE_INFO)" "$(PWD)/*" --output-file "$(COVERAGE_INFO)"
 	lcov --list "$(COVERAGE_INFO)"
+
+lint:
+	cpplint --recursive --exclude "$(BUILD_DIR)/*" .
 
 clean:
 	rm -rf "$(BUILD_DIR)"
