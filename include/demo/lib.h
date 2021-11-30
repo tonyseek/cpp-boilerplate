@@ -3,5 +3,5 @@
 #include <string>
 
 namespace demo {
-    std::string greet(const std::string &&name);
+    std::string greet(const std::string&& name);
 }

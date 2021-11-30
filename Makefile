@@ -4,6 +4,17 @@ COVERAGE_INFO = $(BUILD_DIR)/coverage.info
 
 .PHONY: build build-prepare test lint clean
 
+ifeq ($(OS),Windows_NT)
+	detected_OS := Windows
+else
+	detected_OS := $(shell uname)
+endif
+
+ifeq ($(detected_OS), Darwin)
+	CC = $(shell brew --prefix llvm)/bin/clang
+	CXX = $(shell brew --prefix llvm)/bin/clang++
+endif
+
 build: build-prepare
 	cmake --build "$(BUILD_DIR)"
 
