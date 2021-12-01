@@ -37,5 +37,12 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug|RelWithDebInfo")
 endif()
 
 include_directories(include)
+install(
+  DIRECTORY include
+  DESTINATION include
+  FILES_MATCHING
+  PATTERN "*.h")
+
 add_subdirectory(src)
+add_subdirectory(apps)
 add_subdirectory(tests)

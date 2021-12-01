@@ -1,8 +1,9 @@
 BUILD_DIR = build
 BUILD_TYPE = RelWithDebInfo
+INSTALL_PREFIX = $(PWD)/build/target
 COVERAGE_INFO = $(BUILD_DIR)/coverage.info
 
-.PHONY: build build-prepare test lint clean
+.PHONY: build build-prepare install test lint clean
 
 ifeq ($(OS),Windows_NT)
 	detected_OS := Windows
@@ -22,7 +23,11 @@ build-prepare:
 	cmake -S . -B "$(BUILD_DIR)" \
 		-D "CMAKE_BUILD_TYPE=$(BUILD_TYPE)" \
 		-D "CMAKE_C_COMPILER=$(CC)" \
-		-D "CMAKE_CXX_COMPILER=$(CXX)"
+		-D "CMAKE_CXX_COMPILER=$(CXX)" \
+		-D "CMAKE_INSTALL_PREFIX=$(INSTALL_PREFIX)"
+
+install: build
+	cmake --install "$(BUILD_DIR)"
 
 test: build
 	ctest --test-dir "$(BUILD_DIR)" --output-on-failure

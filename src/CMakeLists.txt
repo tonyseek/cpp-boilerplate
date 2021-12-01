@@ -6,3 +6,4 @@ target_link_libraries(
   demo PRIVATE
   ${Boost_LIBRARIES}
   coverage_config)
+install(TARGETS demo)
