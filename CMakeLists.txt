@@ -7,15 +7,14 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 include(cmake/conan.cmake)
 include(cmake/doctest.cmake)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
-list(APPEND CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR})
-
 conan_cmake_autodetect(CONAN_SETTINGS)
 conan_cmake_install(
   PATH_OR_REFERENCE ${CMAKE_CURRENT_SOURCE_DIR}
   BUILD outdated
   REMOTE conancenter
   SETTINGS ${CONAN_SETTINGS})
+
+include(${CMAKE_CURRENT_BINARY_DIR}/conan_paths.cmake)
 
 enable_testing()
 find_package(Boost REQUIRED)
